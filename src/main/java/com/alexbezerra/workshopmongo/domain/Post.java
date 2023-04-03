@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.alexbezerra.workshopmongo.dto.AuthorDTO;
+import com.alexbezerra.workshopmongo.dto.CommentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -21,6 +22,9 @@ public class Post implements Serializable {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
+
 	
 	@DBRef(lazy = true)
 	private List<Post> posts = new ArrayList<>();
@@ -73,7 +77,7 @@ public class Post implements Serializable {
 	public AuthorDTO getAuthor() {
 		return author;
 	}
-
+	
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
@@ -84,6 +88,15 @@ public class Post implements Serializable {
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
+	
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
+
 
 	@Override
 	public int hashCode() {
